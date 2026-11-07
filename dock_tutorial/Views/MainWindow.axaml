@@ -1,0 +1,53 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:dock_tutorial.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="dock_tutorial.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Name="RootWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="dock_tutorial">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    
+    <Grid RowDefinitions="Auto,*">
+        
+        <Menu Grid.Row="0">
+            <MenuItem Header="文件">
+                <MenuItem Header="打开文件" Command="{Binding OpenFileDocumentCommand}"></MenuItem>
+                <MenuItem Header="打开图片" Command="{Binding OpenImgDocumentCommand}"></MenuItem>
+                <MenuItem Header="保存"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="视图">
+                <MenuItem Header="重置"></MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <DockControl Grid.Row="1" InitializeFactory="True" InitializeLayout="True">
+            <DockControl.Factory>
+                <Factory></Factory>
+            </DockControl.Factory>
+            
+            <RootDock>
+                <DocumentDock IsCollapsable="False" 
+                              ItemsSource="{Binding #RootWindow.((vm:MainWindowViewModel)DataContext).DocksPannels}">
+                    <DocumentDock.DocumentTemplate>
+                        <DocumentTemplate>
+                            <Grid x:DataType="Document">
+                                <ContentControl Content="{Binding Context}">
+                                </ContentControl>
+                            </Grid>
+                        </DocumentTemplate>
+                    </DocumentDock.DocumentTemplate>
+                </DocumentDock>
+            </RootDock>
+        </DockControl>
+
+    </Grid>
+</Window>
