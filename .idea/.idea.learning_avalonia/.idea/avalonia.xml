@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="custom_titlebar/App.axaml" value="custom_titlebar/custom_titlebar.csproj" />
+        <entry key="custom_titlebar/Styles/Style.axaml" value="custom_titlebar/custom_titlebar.csproj" />
+        <entry key="custom_titlebar/Styles/Theme.axaml" value="custom_titlebar/custom_titlebar.csproj" />
+        <entry key="custom_titlebar/Styles/WindowDecorations.axaml" value="custom_titlebar/custom_titlebar.csproj" />
+        <entry key="custom_titlebar/Views/MainWindow.axaml" value="custom_titlebar/custom_titlebar.csproj" />
+        <entry key="custom_titlebar/Views/TitleBar.axaml" value="custom_titlebar/custom_titlebar.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

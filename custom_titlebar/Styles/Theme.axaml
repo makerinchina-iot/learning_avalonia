@@ -1,0 +1,54 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Add Resources Here -->
+    
+    <!-- ===== 亮/暗主题色板：所有标题栏控件都用 DynamicResource 引用，切主题自动生效 ===== -->
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="AppSurfaceBrush" Color="#FFFFFFFF" />
+            <SolidColorBrush x:Key="AppBackdropTintBrush" Color="#B3FFFFFF" />
+            <SolidColorBrush x:Key="TitleBarTintBrush" Color="#CCF7F8FA" />
+            <SolidColorBrush x:Key="TitleBarBrush" Color="#FFF7F8FA" />
+            <SolidColorBrush x:Key="FrameBorderBrush" Color="#FFE4E7ED" />
+            <SolidColorBrush x:Key="TextPrimaryBrush" Color="#FF1F2329" />
+            <SolidColorBrush x:Key="TextSecondaryBrush" Color="#FF6B7280" />
+            <SolidColorBrush x:Key="CaptionForegroundBrush" Color="#FF34373E" />
+            <SolidColorBrush x:Key="CaptionInactiveBrush" Color="#FFA4AAB4" />
+            <SolidColorBrush x:Key="CaptionHoverBrush" Color="#FFE9ECF2" />
+            <SolidColorBrush x:Key="CaptionPressedBrush" Color="#FFDCE1E9" />
+            <SolidColorBrush x:Key="SearchBackgroundBrush" Color="#FFF0F2F6" />
+            <SolidColorBrush x:Key="SearchBorderBrush" Color="#FFDCE1E9" />
+            <SolidColorBrush x:Key="CardBrush" Color="#FFF7F8FB" />
+            <SolidColorBrush x:Key="AccentBrush" Color="#FF5B5BD6" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="AppSurfaceBrush" Color="#FF1E1F23" />
+            <SolidColorBrush x:Key="AppBackdropTintBrush" Color="#BF1E1F23" />
+            <SolidColorBrush x:Key="TitleBarTintBrush" Color="#D925262B" />
+            <SolidColorBrush x:Key="TitleBarBrush" Color="#FF25262B" />
+            <SolidColorBrush x:Key="FrameBorderBrush" Color="#FF3A3D45" />
+            <SolidColorBrush x:Key="TextPrimaryBrush" Color="#FFECEEF2" />
+            <SolidColorBrush x:Key="TextSecondaryBrush" Color="#FF9AA1AD" />
+            <SolidColorBrush x:Key="CaptionForegroundBrush" Color="#FFE2E4E9" />
+            <SolidColorBrush x:Key="CaptionInactiveBrush" Color="#FF6C727D" />
+            <SolidColorBrush x:Key="CaptionHoverBrush" Color="#FF34363D" />
+            <SolidColorBrush x:Key="CaptionPressedBrush" Color="#FF3D4048" />
+            <SolidColorBrush x:Key="SearchBackgroundBrush" Color="#FF2C2E34" />
+            <SolidColorBrush x:Key="SearchBorderBrush" Color="#FF3C3F47" />
+            <SolidColorBrush x:Key="CardBrush" Color="#FF26282E" />
+            <SolidColorBrush x:Key="AccentBrush" Color="#FF9B9BFF" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <!-- ===== 全局尺寸：窗口、主题模板、内容布局共用同一数字，避免错位 ===== -->
+    <!-- 必须与 MainWindow 的 ExtendClientAreaTitleBarHeightHint / RowDefinitions 一致 -->
+    <x:Double x:Key="TitleBarHeight">36</x:Double>
+    <x:Double x:Key="CaptionButtonWidth">46</x:Double>
+    
+    <SolidColorBrush x:Key="CaptionCloseHoverBrush" Color="#FFE81123" />
+    <LinearGradientBrush x:Key="LogoBrush" StartPoint="0%,0%" EndPoint="100%,100%">
+        <GradientStop Color="#FF7C6BFF" Offset="0" />
+        <GradientStop Color="#FF35B6F0" Offset="1" />
+    </LinearGradientBrush>
+    
+</ResourceDictionary>

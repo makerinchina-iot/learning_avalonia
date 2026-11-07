@@ -1,0 +1,214 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Add Resources Here -->
+    <!-- ===== Caption 按钮（视觉） ===== -->
+    <ControlTheme x:Key="ModernCaptionButton" TargetType="Button">
+        <Setter Property="Width" Value="{DynamicResource CaptionButtonWidth}" />
+        <Setter Property="Height" Value="{DynamicResource TitleBarHeight}" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource CaptionForegroundBrush}" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />
+        <!-- 所有 caption 按钮都要声明为装饰元素，输入才会被正确转发 -->
+        <Setter Property="(WindowDecorationProperties.ElementRole)" Value="DecorationsElement" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Name="PART_CaptionRoot" Background="{TemplateBinding Background}">
+                    <ContentPresenter Name="PART_ContentPresenter"
+                                      Content="{TemplateBinding Content}"
+                                      Foreground="{TemplateBinding Foreground}"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center" />
+                </Border>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:pointerover /template/ Border#PART_CaptionRoot">
+            <Setter Property="Background" Value="{DynamicResource CaptionHoverBrush}" />
+        </Style>
+        <Style Selector="^:pressed /template/ Border#PART_CaptionRoot">
+            <Setter Property="Background" Value="{DynamicResource CaptionPressedBrush}" />
+        </Style>
+        <Style Selector="^.Close:pointerover /template/ Border#PART_CaptionRoot">
+            <Setter Property="Background" Value="{DynamicResource CaptionCloseHoverBrush}" />
+        </Style>
+        <Style Selector="^.Close:pointerover">
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+        <Style Selector="^.inactive">
+            <Setter Property="Foreground" Value="{DynamicResource CaptionInactiveBrush}" />
+        </Style>
+        <Style Selector="^:disabled">
+            <Setter Property="Opacity" Value="0.25" />
+        </Style>
+    </ControlTheme>
+
+    <!-- ===== 覆盖框架默认的 WindowDrawnDecorations 主题 ===== -->
+    <ControlTheme x:Key="{x:Type WindowDrawnDecorations}" TargetType="WindowDrawnDecorations">
+        <Setter Property="DefaultTitleBarHeight" Value="{StaticResource TitleBarHeight}" />
+        <Setter Property="DefaultFrameThickness" Value="1" />
+        <Setter Property="DefaultShadowThickness" Value="8" />
+        <Setter Property="Template">
+            <WindowDrawnDecorationsTemplate>
+                <WindowDrawnDecorationsContent>
+
+                    <!-- UNDERLAY：位于 Window.Content 下方，画背景/边框/标题栏底色 -->
+                    <WindowDrawnDecorationsContent.Underlay>
+                        <Panel x:Name="PART_UnderlayWrapper">
+                            <Border x:Name="PART_WindowBorder"
+                                    Background="Transparent"
+                                    BorderThickness="{TemplateBinding FrameThickness}"
+                                    BorderBrush="{DynamicResource FrameBorderBrush}"
+                                    CornerRadius="12"
+                                    IsHitTestVisible="False" />
+                            <Border x:Name="PART_TitleBar"
+                                    VerticalAlignment="Top"
+                                    Height="{TemplateBinding TitleBarHeight}"
+                                    Background="Transparent"
+                                    CornerRadius="12,12,0,0"
+                                    IsVisible="{TemplateBinding HasTitleBar}"
+                                    WindowDecorationProperties.ElementRole="TitleBar" />
+                        </Panel>
+                    </WindowDrawnDecorationsContent.Underlay>
+
+                    <!-- OVERLAY：位于 Window.Content 上方，只放可交互的 caption 按钮 -->
+                    <WindowDrawnDecorationsContent.Overlay>
+                        <Panel x:Name="PART_OverlayWrapper">
+                            <!-- 应用自己画标题，框架自带标题文字隐藏 -->
+                            <Panel x:Name="PART_TitleTextPanel" IsVisible="False"
+                                   IsHitTestVisible="False" VerticalAlignment="Top"
+                                   Height="{TemplateBinding TitleBarHeight}" />
+
+                            <StackPanel x:Name="PART_OverlayPanel"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Right"
+                                        Height="{TemplateBinding TitleBarHeight}"
+                                        IsVisible="{TemplateBinding HasTitleBar}"
+                                        Orientation="Horizontal">
+                                <Button x:Name="PART_MinimizeButton"
+                                        Theme="{StaticResource ModernCaptionButton}"
+                                        WindowDecorationProperties.ElementRole="MinimizeButton"
+                                        Classes.inactive="{Binding !$parent[Window].IsActive}">
+                                    <Viewbox Width="11" Height="11">
+                                        <PathIcon Data="M2048 1229v-205h-2048v205h2048z" />
+                                    </Viewbox>
+                                </Button>
+
+                                <Button x:Name="PART_MaximizeButton"
+                                        Theme="{StaticResource ModernCaptionButton}"
+                                        WindowDecorationProperties.ElementRole="MaximizeButton"
+                                        Classes.inactive="{Binding !$parent[Window].IsActive}">
+                                    <Panel>
+                                        <Viewbox x:Name="MaximizeGlyph" Width="11" Height="11">
+                                            <PathIcon Data="M2048 2048v-2048h-2048v2048h2048zM1843 1843h-1638v-1638h1638v1638z" />
+                                        </Viewbox>
+                                        <Viewbox x:Name="RestoreGlyph" Width="11" Height="11" IsVisible="False">
+                                            <PathIcon Data="M2048 410h-410v-410h-1638v1638h410v410h1638v-1638zM1434 1434h-1229v-1229h1229v1229zM1843 1843h-1229v-205h1024v-1024h205v1229z" />
+                                        </Viewbox>
+                                    </Panel>
+                                </Button>
+
+                                <Button x:Name="PART_CloseButton"
+                                        Classes="Close"
+                                        Theme="{StaticResource ModernCaptionButton}"
+                                        WindowDecorationProperties.ElementRole="CloseButton"
+                                        Classes.inactive="{Binding !$parent[Window].IsActive}">
+                                    <Viewbox Width="11" Height="11">
+                                        <PathIcon Data="M1169 1024l879 -879l-145 -145l-879 879l-879 -879l-145 145l879 879l-879 879l145 145l879 -879l879 879l145 -145z" />
+                                    </Viewbox>
+                                </Button>
+                            </StackPanel>
+                        </Panel>
+                    </WindowDrawnDecorationsContent.Overlay>
+
+                    <!-- FULLSCREEN POPOVER：全屏时鼠标移到窗口最上沿 1px 才浮现 -->
+                    <WindowDrawnDecorationsContent.FullscreenPopover>
+                        <Border Height="{TemplateBinding DefaultTitleBarHeight}"
+                                VerticalAlignment="Top"
+                                Background="{DynamicResource TitleBarTintBrush}"
+                                WindowDecorationProperties.ElementRole="TitleBar">
+                            <DockPanel>
+                                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                                    <Button x:Name="PART_PopoverFullScreenButton"
+                                            Theme="{StaticResource ModernCaptionButton}"
+                                            WindowDecorationProperties.ElementRole="FullScreenButton">
+                                        <Viewbox Width="11" Height="11">
+                                            <PathIcon Data="M205 1024h819v-819h-205v469l-674 -674l-145 145l674 674h-469v205zM1374 1229h469v-205h-819v819h205v-469l674 674l145 -145z" />
+                                        </Viewbox>
+                                    </Button>
+                                    <Button x:Name="PART_PopoverCloseButton"
+                                            Classes="Close"
+                                            Theme="{StaticResource ModernCaptionButton}"
+                                            WindowDecorationProperties.ElementRole="CloseButton">
+                                        <Viewbox Width="11" Height="11">
+                                            <PathIcon Data="M1169 1024l879 -879l-145 -145l-879 879l-879 -879l-145 145l879 879l-879 879l145 145l879 -879l879 879l145 -145z" />
+                                        </Viewbox>
+                                    </Button>
+                                </StackPanel>
+                                <TextBlock Text="{TemplateBinding Title}"
+                                           VerticalAlignment="Center"
+                                           Margin="14,0,0,0"
+                                           FontSize="12"
+                                           Foreground="{DynamicResource TextPrimaryBrush}" />
+                            </DockPanel>
+                        </Border>
+                    </WindowDrawnDecorationsContent.FullscreenPopover>
+
+                </WindowDrawnDecorationsContent>
+            </WindowDrawnDecorationsTemplate>
+        </Setter>
+
+        <!-- 阴影：把 underlay / overlay 内缩 ShadowThickness，再画 BoxShadow -->
+        <Style Selector="^:has-shadow /template/ Panel#PART_UnderlayWrapper">
+            <Setter Property="Margin" Value="{TemplateBinding ShadowThickness}" />
+        </Style>
+        <Style Selector="^:has-shadow /template/ Panel#PART_OverlayWrapper">
+            <Setter Property="Margin" Value="{TemplateBinding ShadowThickness}" />
+        </Style>
+        <Style Selector="^:has-shadow /template/ Border#PART_WindowBorder">
+            <Setter Property="BoxShadow" Value="0 4 16 0 #50000000" />
+        </Style>
+
+        <!-- 边框：把标题栏和按钮内缩 1px，避免压住边框 -->
+        <Style Selector="^:has-border /template/ Border#PART_TitleBar">
+            <Setter Property="Margin" Value="1,1,1,0" />
+        </Style>
+        <Style Selector="^:has-border /template/ StackPanel#PART_OverlayPanel">
+            <Setter Property="Margin" Value="0,1,1,0" />
+        </Style>
+
+        <!-- 最大化：圆角归零 + 最大化按钮换「还原」图标 -->
+        <Style Selector="^:maximized /template/ Border#PART_WindowBorder">
+            <Setter Property="CornerRadius" Value="0" />
+        </Style>
+        <Style Selector="^:maximized /template/ Border#PART_TitleBar">
+            <Setter Property="CornerRadius" Value="0" />
+        </Style>
+        <Style Selector="^:maximized /template/ Viewbox#MaximizeGlyph">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+        <Style Selector="^:maximized /template/ Viewbox#RestoreGlyph">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+
+        <!-- 平台不支持某个动作时隐藏对应按钮 -->
+        <Style Selector="^:not(:has-minimize) /template/ Button#PART_MinimizeButton">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+        <Style Selector="^:not(:has-maximize) /template/ Button#PART_MaximizeButton">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+        <Style Selector="^ /template/ Button:disabled">
+            <Setter Property="Opacity" Value="0.25" />
+        </Style>
+
+        <!-- 全屏：常规标题栏隐藏，交给 FullscreenPopover -->
+        <Style Selector="^:fullscreen /template/ StackPanel#PART_OverlayPanel">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+        <Style Selector="^:fullscreen /template/ Border#PART_TitleBar">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

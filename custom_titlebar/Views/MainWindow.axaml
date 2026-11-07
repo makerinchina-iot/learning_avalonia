@@ -1,0 +1,85 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:custom_titlebar.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:chrome="using:Avalonia.Controls.Chrome"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="custom_titlebar.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/monkey.ico"
+        WindowDecorations="Full"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaTitleBarHeightHint="36"
+        Background="Transparent"
+        TransparencyLevelHint="Mica"
+        TransparencyBackgroundFallback="{DynamicResource AppSurfaceBrush}"
+        Title="custom_titlebar">
+    
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    
+        <Grid RowDefinitions="36,*">
+
+            <!-- title bar -->
+            <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto,140" Margin="0 2 0 0">
+                
+                <!-- icon + menu -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <Image Source="avares://custom_titlebar/Assets/monkey.ico"
+                           Height="24" Width="24"
+                           Margin="6"
+                           WindowDecorationProperties.ElementRole="TitleBar"></Image>
+                    
+                    <Menu>
+                        <MenuItem Header="文件(_F)">
+                            <MenuItem Header="打开"></MenuItem>
+                            <MenuItem Header="保存"></MenuItem>
+                        </MenuItem>
+                        <MenuItem Header="视图(_V)">
+                            <MenuItem Header="放大"></MenuItem>
+                            <MenuItem Header="缩小"></MenuItem>
+                            <MenuItem Header="切换主题" Command="{Binding ToggleThemeCommand}"></MenuItem>
+                        </MenuItem>
+                        <MenuItem Header="帮助(_H)">
+                            <MenuItem Header="关于"></MenuItem>
+                        </MenuItem>
+                    </Menu>
+                </StackPanel>
+                
+                <!-- search bar -->
+                <TextBox Grid.Column="1"
+                        CornerRadius="6"
+                        MaxWidth="260"
+                        PlaceholderText="搜索命令和文件" >
+                        <TextBox.InnerLeftContent>
+                            <TextBlock Margin="4 0" Text="🔍" Height="20" VerticalAlignment="Center"></TextBlock>
+                        </TextBox.InnerLeftContent>
+                        <TextBox.InnerRightContent>
+                            <TextBlock Text="Ctrl+F" Margin="4 0" VerticalAlignment="Center"></TextBlock>
+                        </TextBox.InnerRightContent>
+                </TextBox>
+                
+                <!-- quick action -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Button Background="Transparent" Content="🤖"></Button>
+                    <Button Background="Transparent" Content="⚙️"></Button>
+                </StackPanel>
+                
+                <!-- system min/max/close button -->
+                <Border Grid.Column="3"></Border>
+                
+            </Grid>
+            
+            <Grid Grid.Row="1">
+                <TextBlock Text="MainContent" 
+                           VerticalAlignment="Center" HorizontalAlignment="Center">
+                </TextBlock>
+            </Grid>
+            
+        </Grid>
+
+</Window>

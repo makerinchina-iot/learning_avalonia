@@ -1,0 +1,84 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="40"
+             x:Class="custom_titlebar.Views.TitleBar">
+    
+    <Border Background="#a0f0f0f0"
+            WindowDecorationProperties.ElementRole="TitleBar"
+            BorderBrush="#303030"
+            BorderThickness="0 0 0 1">
+        
+        <Grid ColumnDefinitions="Auto,Auto,*,Auto,Auto">
+            
+            <!-- icon,title -->
+            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                <!-- Assets/avalonia-logo.ico -->
+                <Image Source="/Assets/avalonia-logo.ico" 
+                       Width="30" Height="30"
+                       Margin="8 0 8 0"></Image>
+                <TextBlock Text="MonkeyPi"
+                           VerticalAlignment="Center"
+                           Margin="0 0 20 0"
+                           FontWeight="Bold"></TextBlock>
+            </StackPanel>
+            
+            <!-- menubar -->
+            <Menu Grid.Column="1">
+                <MenuItem Header="File">
+                    <MenuItem Header="New"></MenuItem>
+                    <MenuItem Header="Open"></MenuItem>
+                    <MenuItem Header="Save"></MenuItem>
+                    <MenuItem Header="Save As"></MenuItem>
+                    <Separator></Separator>
+                    <MenuItem Header="Exit"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Edit">
+                    <MenuItem Header="Undo"></MenuItem>
+                    <MenuItem Header="Redo"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="View">
+                    <MenuItem Header="Zoom In"></MenuItem>
+                    <MenuItem Header="Zoom Out"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Help">
+                    <MenuItem Header="About"></MenuItem>
+                    <MenuItem Header="MonkeyPi"></MenuItem>
+                </MenuItem>
+            </Menu>
+            
+            <!-- search -->
+            <Border Grid.Column="2"
+                    BorderBrush="LightGray"
+                    BorderThickness="1"
+                    Margin="20 4 20 4"
+                    Background="#a0f0f0f0"
+                    CornerRadius="8"
+                    MaxWidth="400"
+                    Cursor="IBeam"
+                    PointerPressed="OnSearchPointerPressed">
+                <Grid ColumnDefinitions="Auto,*">
+                    <TextBlock Grid.Column="0" Text="🔍" VerticalAlignment="Center" Margin="8"></TextBlock> 
+                    <TextBlock Grid.Column="1" Text="搜索,快捷命令" VerticalAlignment="Center"></TextBlock>
+                </Grid>
+            </Border>
+            
+            <!-- quick actions -->
+            <StackPanel Grid.Column="3" Orientation="Horizontal">
+                <Button Content="🤖" VerticalAlignment="Center" Background="Transparent"></Button>
+                <Button Content="⚙️" VerticalAlignment="Center" Background="Transparent"></Button>
+            </StackPanel>
+            
+            <!-- full,min,max,close button -->
+            <StackPanel Grid.Column="4" Orientation="Horizontal" Margin="8 0 0 0">
+                <Button Content="-" Background="Transparent" Width="36"></Button>
+                <Button Content="□" Background="Transparent" Width="36"></Button>
+                <Button Content="X" Background="Transparent" Width="36" Click="OnCloseButtonClick"></Button>
+            </StackPanel>
+            
+        </Grid>
+            
+    </Border>
+    
+</UserControl>
