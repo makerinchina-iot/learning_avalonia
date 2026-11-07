@@ -9,6 +9,11 @@
         <entry key="custom_titlebar/Styles/WindowDecorations.axaml" value="custom_titlebar/custom_titlebar.csproj" />
         <entry key="custom_titlebar/Views/MainWindow.axaml" value="custom_titlebar/custom_titlebar.csproj" />
         <entry key="custom_titlebar/Views/TitleBar.axaml" value="custom_titlebar/custom_titlebar.csproj" />
+        <entry key="dock_tutorial/App.axaml" value="dock_tutorial/dock_tutorial.csproj" />
+        <entry key="dock_tutorial/ImgDocView.axaml" value="dock_tutorial/dock_tutorial.csproj" />
+        <entry key="dock_tutorial/Views/FileDocView.axaml" value="dock_tutorial/dock_tutorial.csproj" />
+        <entry key="dock_tutorial/Views/ImgDocView.axaml" value="dock_tutorial/dock_tutorial.csproj" />
+        <entry key="dock_tutorial/Views/MainWindow.axaml" value="dock_tutorial/dock_tutorial.csproj" />
       </map>
     </option>
   </component>
