@@ -14,6 +14,11 @@
         <entry key="dock_tutorial/Views/FileDocView.axaml" value="dock_tutorial/dock_tutorial.csproj" />
         <entry key="dock_tutorial/Views/ImgDocView.axaml" value="dock_tutorial/dock_tutorial.csproj" />
         <entry key="dock_tutorial/Views/MainWindow.axaml" value="dock_tutorial/dock_tutorial.csproj" />
+        <entry key="dock_tutorial2/App.axaml" value="dock_tutorial2/dock_tutorial2.csproj" />
+        <entry key="dock_tutorial2/Views/FileDocView.axaml" value="dock_tutorial2/dock_tutorial2.csproj" />
+        <entry key="dock_tutorial2/Views/FileMangerView.axaml" value="dock_tutorial2/dock_tutorial2.csproj" />
+        <entry key="dock_tutorial2/Views/ImgDocView.axaml" value="dock_tutorial2/dock_tutorial2.csproj" />
+        <entry key="dock_tutorial2/Views/MainWindow.axaml" value="dock_tutorial2/dock_tutorial2.csproj" />
       </map>
     </option>
   </component>

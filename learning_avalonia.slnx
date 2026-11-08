@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="custom_titlebar/custom_titlebar.csproj" />
   <Project Path="dock_tutorial/dock_tutorial.csproj" />
+  <Project Path="dock_tutorial2/dock_tutorial2.csproj" />
 </Solution>
